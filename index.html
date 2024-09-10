@@ -1,0 +1,149 @@
+<html lang="en"></html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Particles.js - Animation with dat.GUI</title>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dat.gui/build/dat.gui.min.js"></script>
+    <script src="https://codepen.io/vainsan/pen/eYwmgap.js"></script>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        background: #0E100F;
+      }
+      #particles-js {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="particles-js"></div>
+    <script>
+
+      const particleParams = {
+        particles: {
+          number: {
+            value: 1000,
+            density: { enable: true, value_area: 800 }
+          },
+          color: { value: "#FFFFFF" },
+          shape: {
+            type: "circle",
+            stroke: { width: 0, color: "#000000" }
+          },
+          opacity: {
+            value: 0.5,
+            random: true,
+            anim: { enable: true, speed: 8, opacity_min: 0.1, sync: false }
+          },
+          size: {
+            value: 12,
+            random: true,
+            anim: { enable: false, speed: 4, size_min: 0.1, sync: false }
+          },
+          line_linked: { enable: true },
+          move: {
+            enable: true,
+            speed: 10,
+            direction: "none",
+            random: false,
+            straight: false,
+            out_mode: "out",
+            bounce: false,
+            attract: { enable: false, rotateX: 600, rotateY: 1200 }
+          }
+        },
+        interactivity: {
+          events: {
+            onhover: { enable: true, mode: "repulse" },
+            onclick: { enable: true, mode: "push" },
+            resize: true
+          },
+          modes: {
+            repulse: { distance: 100, duration: 0.4 },
+            push: { particles_nb: 4 }
+          }
+        },
+        retina_detect: true
+      };
+
+
+      particlesJS('particles-js', particleParams);
+
+      const gui = new dat.GUI();
+      const particlesFolder = gui.addFolder('Particles');
+
+      particlesFolder.add(particleParams.particles.number, 'value', 100, 2000).name('Number').onChange(() => {
+        particlesJS('particles-js', particleParams);
+      });
+
+      particlesFolder.add(particleParams.particles.number.density, 'value_area', 100, 2000).name('Density').onChange(() => {
+        particlesJS('particles-js', particleParams);
+      });
+
+      particlesFolder.addColor(particleParams.particles.color, 'value').name('Color').onChange(() => {
+        particlesJS('particles-js', particleParams);
+      });
+
+      particlesFolder.add(particleParams.particles.shape, 'type', ['circle', 'edge', 'triangle', 'polygon', 'star']).name('Shape').onChange(() => {
+        particlesJS('particles-js', particleParams);
+      });
+
+      particlesFolder.add(particleParams.particles.size, 'value', 1, 20).name('Size').onChange(() => {
+        particlesJS('particles-js', particleParams);
+      });
+
+      particlesFolder.add(particleParams.particles.move, 'speed', 1, 50).name('Speed').onChange(() => {
+        particlesJS('particles-js', particleParams);
+      });
+
+      particlesFolder.add(particleParams.particles.opacity, 'value', 0.1, 1).name('Opacity').onChange(() => {
+        particlesJS('particles-js', particleParams);
+      });
+
+      particlesFolder.add(particleParams.particles.opacity.anim, 'enable').name('Opacity Anim').onChange(() => {
+        particlesJS('particles-js', particleParams);
+      });
+
+      particlesFolder.add(particleParams.particles.size.anim, 'size_min', 0.1, 5).name('Min Size').onChange(() => {
+        particlesJS('particles-js', particleParams);
+      });
+
+      particlesFolder.add(particleParams.particles.line_linked, 'enable').name('Link Particles').onChange(() => {
+        particlesJS('particles-js', particleParams);
+      });
+
+      particlesFolder.add(particleParams.interactivity.modes.repulse, 'distance', 10, 200).name('Repulse Distance').onChange(() => {
+        particlesJS('particles-js', particleParams);
+      });
+
+      particlesFolder.add(particleParams.interactivity.modes.push, 'particles_nb', 1, 10).name('Push Particles').onChange(() => {
+        particlesJS('particles-js', particleParams);
+      });
+
+      particlesFolder.open();
+
+      const canvas = document.querySelector('canvas');
+      const ctx = canvas.getContext('2d');
+
+      function applyMirrorEffect() {
+        ctx.save();
+        ctx.translate(canvas.width / 2, canvas.height / 2);
+        ctx.scale(-1, 1); // Effet miroir horizontal
+        ctx.translate(-canvas.width / 2, -canvas.height / 2);
+        ctx.restore();
+      }
+
+      function drawParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        applyMirrorEffect();
+      }
+
+      setInterval(drawParticles, 1000 / 60);
+
+    </script>
+  </body>
+</html>
