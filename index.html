@@ -69,58 +69,44 @@
         retina_detect: true
       };
       particlesJS('particles-js', particleParams);
-
       const gui = new dat.GUI();
       const particlesFolder = gui.addFolder('Particles');
-
       particlesFolder.add(particleParams.particles.number, 'value', 100, 2000).name('Number').onChange(() => {
         particlesJS('particles-js', particleParams);
       });
-
       particlesFolder.add(particleParams.particles.number.density, 'value_area', 100, 2000).name('Density').onChange(() => {
         particlesJS('particles-js', particleParams);
       });
-
       particlesFolder.addColor(particleParams.particles.color, 'value').name('Color').onChange(() => {
         particlesJS('particles-js', particleParams);
       });
-
       particlesFolder.add(particleParams.particles.shape, 'type', ['circle', 'edge', 'triangle', 'polygon', 'star']).name('Shape').onChange(() => {
         particlesJS('particles-js', particleParams);
       });
-
       particlesFolder.add(particleParams.particles.size, 'value', 1, 20).name('Size').onChange(() => {
         particlesJS('particles-js', particleParams);
       });
-
       particlesFolder.add(particleParams.particles.move, 'speed', 1, 50).name('Speed').onChange(() => {
         particlesJS('particles-js', particleParams);
       });
-
       particlesFolder.add(particleParams.particles.opacity, 'value', 0.1, 1).name('Opacity').onChange(() => {
         particlesJS('particles-js', particleParams);
       });
-
       particlesFolder.add(particleParams.particles.opacity.anim, 'enable').name('Opacity Anim').onChange(() => {
         particlesJS('particles-js', particleParams);
       });
-
       particlesFolder.add(particleParams.particles.size.anim, 'size_min', 0.1, 5).name('Min Size').onChange(() => {
         particlesJS('particles-js', particleParams);
       });
-
       particlesFolder.add(particleParams.particles.line_linked, 'enable').name('Link Particles').onChange(() => {
         particlesJS('particles-js', particleParams);
       });
-
       particlesFolder.add(particleParams.interactivity.modes.repulse, 'distance', 10, 200).name('Repulse Distance').onChange(() => {
         particlesJS('particles-js', particleParams);
       });
-
       particlesFolder.add(particleParams.interactivity.modes.push, 'particles_nb', 1, 10).name('Push Particles').onChange(() => {
         particlesJS('particles-js', particleParams);
       });
-
       particlesFolder.open();
 
       const canvas = document.querySelector('canvas');
